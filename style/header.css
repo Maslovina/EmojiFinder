@@ -1,0 +1,27 @@
+header {
+    height: 295px;
+    background: linear-gradient(134deg, #087990 0%, #055160 100%);
+}
+.main_title {
+    text-align: center;
+    padding-top: 68px;
+}
+.main_subtitle {
+    text-align: center;
+    color: #CFF4FC;
+    font-size: 21px;
+    margin-top: 14px;
+}
+.main_search {
+    position: relative;
+    transform: translateY(74px);
+    display: block;
+    margin: 0 auto;
+    width: 820px;
+    height: 64px;
+    border-radius: 4px;
+    border: 1px solid #CED4DA;
+    font-size: 24px;
+    padding-left: 32px;
+    outline: none;
+}
