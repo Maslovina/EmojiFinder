@@ -2,15 +2,16 @@ import { data } from './data_test.js'
 
 const cardsList = document.querySelector(".emoji_list"); // грид карточек
 
-
+const search = document.querySelector(".main_search") // доступ к инпуту
+search.addEventListener("input", searchValue) // событие ввода
 /* Функция принимает массив и запускает цикл по всем элементам массива */
 
-function zzz (data) {
+function renderCard (data) {
   for (let obj of data) {
     cardsList.append(createCard(obj)); // добавил карточку в грид
   }
 }
-zzz(data)
+renderCard(data)
 
 /* функция создает карточки */
 
@@ -39,15 +40,14 @@ function createCard(obj) {
 
 /* РЕАЛИЗАЦИЯ ПОИСКА */
 
-// доступ к инпуту и событие ввода
-const search = document.querySelector(".main_search").addEventListener("input", searchValue); 
-
-  /* получение значения инпута */
-function searchValue(search) {
-  let searchData = search.target.value
-  for (let obj of data) {
-    if (obj.title.includes(searchData)) {
-      console.log(obj);
+/* получение значения инпута + сравнение input с data */
+function searchValue(event) {
+  const searchData = event.target.value // таргет вводы
+  const lowReg = searchData.toLowerCase() // все в нижний регистр
+  const filteredData = data.filter(function (item) {
+    if (item.keywords.includes(lowReg) || item.title.includes(lowReg)) {
+      return item;
     }
-  }
+  });
+  console.log(filteredData);
 }
