@@ -1,9 +1,12 @@
-import { data } from './script/data.js'
+import { data } from '../script/data.js'
 
 const search = document.querySelector(".main_search") // доступ к инпуту
 search.addEventListener("input", searchValue) // событие ввода
-/* Функция принимает массив и запускает цикл по всем элементам массива */
 
+
+
+
+/* Функция принимает массив и запускает цикл по всем элементам массива */
 function renderCards(data) {
   const cardsList = document.getElementById("emoji_container");
   
@@ -36,7 +39,7 @@ function createCard(obj) {
 
     let keywords = document.createElement("p"); // созздаю keywords
     keywords.classList.add("card_keywords");
-    keywords.textContent = obj.keywords;
+    keywords.textContent = [...deleteCopies(obj.keywords)].join(' '); // вызов функции удаления дублей
 
     card.append(symbol); // добавил символ
     card.append(title);
@@ -49,7 +52,7 @@ function createCard(obj) {
 /* получение значения инпута + сравнение input с data */
 function searchValue(event) {
   const searchData = event.target.value // таргет вводы
-  const lowReg = searchData.toLowerCase() // все в нижний регистр
+  const lowReg = searchData.trim().toLowerCase() // все в нижний регистр
   const filteredData = data.filter(function (item) {
     if (item.keywords.includes(lowReg) || item.title.includes(lowReg)) {
       return item;
@@ -58,4 +61,11 @@ function searchValue(event) {
   renderCards(filteredData)
  // console.log(filteredData);
   
+}
+
+
+/* Удаление дублирующихся слов в описание */
+function deleteCopies(str) {
+  const newStr = str.toLowerCase().split(' ')
+  return new Set(newStr)
 }
