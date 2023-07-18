@@ -1,4 +1,4 @@
-import { data } from './data_test.js'
+import { data } from './data.js'
 
 const search = document.querySelector(".main_search") // доступ к инпуту
 search.addEventListener("input", searchValue) // событие ввода
