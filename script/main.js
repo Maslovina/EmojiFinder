@@ -1,17 +1,23 @@
 import { data } from './data_test.js'
 
-const cardsList = document.querySelector(".emoji_list"); // грид карточек
-
 const search = document.querySelector(".main_search") // доступ к инпуту
 search.addEventListener("input", searchValue) // событие ввода
 /* Функция принимает массив и запускает цикл по всем элементам массива */
 
-function renderCard (data) {
+function renderCards(data) {
+  const cardsList = document.getElementById("emoji_container");
+  
+  while (cardsList.firstChild) {
+    cardsList.removeChild(cardsList.firstChild);
+  }
+ 
   for (let obj of data) {
+    
     cardsList.append(createCard(obj)); // добавил карточку в грид
   }
+  
 }
-renderCard(data)
+renderCards(data)
 
 /* функция создает карточки */
 
@@ -49,5 +55,7 @@ function searchValue(event) {
       return item;
     }
   });
-  console.log(filteredData);
+  renderCards(filteredData)
+ // console.log(filteredData);
+  
 }
